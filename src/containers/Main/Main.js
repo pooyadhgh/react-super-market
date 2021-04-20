@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ProductList from '../../components/ProductList/ProductList';
 import getAllProducts from '../../services/getAllProducts';
 
 const Main = props => {
@@ -10,7 +11,7 @@ const Main = props => {
       .catch(err => console.log(err));
   }, []);
 
-  return <p>main</p>;
+  return <ProductList />;
 };
 
 export default Main;
