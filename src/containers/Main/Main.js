@@ -11,7 +11,7 @@ const Main = props => {
       .catch(err => console.log(err));
   }, []);
 
-  return <ProductList />;
+  return <ProductList products={products} />;
 };
 
 export default Main;
