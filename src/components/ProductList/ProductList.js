@@ -8,11 +8,12 @@ const ProductList = props => {
         key={item.title}
         tag={item.type}
         title={item.title}
-        img={`/assets/${item.filename}`}
+        id={item.id}
+        img={`/assets/images/${item.filename}`}
       >
         <p>{item.description}</p>
         <p>
-          <strong>Price:</strong> {item.price}$
+          <strong>Price:</strong> $ {item.price}
         </p>
         <Button text="Add To Cart" type="blue" />
       </Card>

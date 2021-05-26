@@ -10,7 +10,6 @@ const Main = props => {
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
-
   return <ProductList products={products} />;
 };
 
