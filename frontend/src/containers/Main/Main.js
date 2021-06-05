@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productListAction } from '../../actions/productAction';
 import Card from '../../components/UI/Card/Card';
 import Button from '../../components/UI/Button/Button';
+import { Link } from 'react-router-dom';
 
 const Main = props => {
   const dispatch = useDispatch();
@@ -27,7 +28,9 @@ const Main = props => {
         <p>
           <strong>Price:</strong> $ {item.price}
         </p>
-        <Button text="Add To Cart" type="blue" />
+        <Link to={`/cart/${item._id}/1`}>
+          <Button text="Add To Cart" type="blue" />
+        </Link>
       </Card>
     );
   });

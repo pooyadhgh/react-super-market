@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { cartReducer } from './reducers/cartReducer';
 import {
   productListReducer,
   productPageReducer,
@@ -8,9 +9,12 @@ import {
 const reducer = combineReducers({
   productList: productListReducer,
   productPage: productPageReducer,
+  cart: cartReducer,
 });
 
-const initialState = {};
+const initialState = {
+  cart: { cartItems: [] },
+};
 
 const middleware = [thunk];
 

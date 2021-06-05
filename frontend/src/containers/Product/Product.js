@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { productPageAction } from '../../actions/productAction';
 import Button from '../../components/UI/Button/Button';
 
 const Product = props => {
   const postId = props.match.params.id;
+  const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
   const productPage = useSelector(state => state.productPage);
@@ -13,6 +15,10 @@ const Product = props => {
   useEffect(() => {
     dispatch(productPageAction(postId));
   }, [dispatch, postId]);
+
+  const amountHandler = e => {
+    setAmount(e.target.value);
+  };
 
   return (
     <>
@@ -43,7 +49,10 @@ const Product = props => {
                 <div className="flex items-center">
                   <span className="mr-3">Amount</span>
                   <div className="relative">
-                    <select className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
+                    <select
+                      className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10"
+                      onChange={e => amountHandler(e)}
+                    >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -71,7 +80,9 @@ const Product = props => {
                   $ {product.price}
                 </span>
                 <div className="ml-auto">
-                  <Button text="Add To Cart" type="blue" />
+                  <Link to={`/cart/${product._id}/${amount}`}>
+                    <Button text="Add To Cart" type="blue" />
+                  </Link>
                 </div>
               </div>
             </div>
