@@ -1,16 +1,42 @@
-import { useEffect, useState } from 'react';
-import ProductList from '../../components/ProductList/ProductList';
-import getAllProducts from '../../services/getAllProducts';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { productListAction } from '../../actions/productAction';
+import Card from '../../components/UI/Card/Card';
+import Button from '../../components/UI/Button/Button';
 
 const Main = props => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const productList = useSelector(state => state.productList);
+  const { products } = productList;
 
   useEffect(() => {
-    getAllProducts()
-      .then(res => setProducts(res.data))
-      .catch(err => console.log(err));
-  }, []);
-  return <ProductList products={products} />;
+    dispatch(productListAction());
+  }, [dispatch]);
+
+  const productCarts = products.map(item => {
+    return (
+      <Card
+        key={item.title}
+        tag={item.type}
+        title={item.title}
+        id={item._id}
+        img={`/assets/images/${item.filename}`}
+      >
+        <p>{item.description}</p>
+        <p>
+          <strong>Price:</strong> $ {item.price}
+        </p>
+        <Button text="Add To Cart" type="blue" />
+      </Card>
+    );
+  });
+
+  return (
+    <div className="flex flex-wrap	flex-1 flex-none flex-grow md:flex-grow-0 justify-center">
+      {productCarts}
+    </div>
+  );
 };
 
 export default Main;

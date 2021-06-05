@@ -5,13 +5,13 @@ const Header = props => {
     <header>
       <nav className=" border-b mb-5 px-10 w-full flex flex-none fixed bg-white top-0 z-40">
         <picture className="flex flex-none pl-4 flex items-center box-border">
-          <a href="/">
+          <Link to="/">
             <img
               src="/logo192.png"
               alt="React SuperMarket"
               style={{ maxWidth: '45px' }}
             />
-          </a>
+          </Link>
         </picture>
         <ul className="flex flex-auto items-center space-x-5 m-5">
           <li className="hover:underline">

@@ -1,46 +1,44 @@
-import { useEffect, useState } from 'react';
-import getAllProducts from '../../services/getAllProducts';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { productPageAction } from '../../actions/productAction';
 import Button from '../../components/UI/Button/Button';
 
 const Product = props => {
   const postId = props.match.params.id;
+  const dispatch = useDispatch();
 
-  const [product, setProduct] = useState([]);
+  const productPage = useSelector(state => state.productPage);
+  const { product } = productPage;
 
   useEffect(() => {
-    getAllProducts()
-      .then(res => {
-        const selectedProduct = res.data.filter(item => item._id === +postId);
-        setProduct(selectedProduct);
-      })
-      .catch(err => console.log(err));
-  }, [postId]);
+    dispatch(productPageAction(postId));
+  }, [dispatch, postId]);
 
-  const productPage = product.map(item => {
-    return (
+  return (
+    <>
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
-              alt={item.title}
+              alt={product.title}
               className="lg:w-1/3 my-6 w-full object-cover object-center rounded border border-gray-200"
-              src={`/assets/images/${item.filename}`}
+              src={`/assets/images/${product.filename}`}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 className="text-gray-900 text-3xl title-font font-medium py-1">
-                {item.title}
+                {product.title}
               </h1>
               <h2 className="text-sm title-font text-gray-500 tracking-widest py-1">
-                {item.tag}
+                {product.tag}
               </h2>
               <div className="flex my-4">
                 <span className="flex items-center">
                   <span className="text-gray-600">
-                    Rating: {item.rating} / 5
+                    Rating: {product.rating} / 5
                   </span>
                 </span>
               </div>
-              <p className="leading-relaxed">{item.text}</p>
+              <p className="leading-relaxed">{product.text}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-2">
                 <div className="flex items-center">
                   <span className="mr-3">Amount</span>
@@ -70,7 +68,7 @@ const Product = props => {
               </div>
               <div className="flex">
                 <span className="py-3 title-font font-medium text-2xl text-gray-900">
-                  $ {item.price}
+                  $ {product.price}
                 </span>
                 <div className="ml-auto">
                   <Button text="Add To Cart" type="blue" />
@@ -80,10 +78,8 @@ const Product = props => {
           </div>
         </div>
       </section>
-    );
-  });
-
-  return <>{productPage}</>;
+    </>
+  );
 };
 
 export default Product;

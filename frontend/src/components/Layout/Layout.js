@@ -6,7 +6,7 @@ const Layout = props => {
   return (
     <Wrapper>
       <Header />
-      <main className="my-14">{props.children}</main>
+      <main className="mt-14">{props.children}</main>
       <Footer />
     </Wrapper>
   );
