@@ -8,7 +8,7 @@ const ProductList = props => {
         key={item.title}
         tag={item.type}
         title={item.title}
-        id={item.id}
+        id={item._id}
         img={`/assets/images/${item.filename}`}
       >
         <p>{item.description}</p>

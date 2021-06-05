@@ -10,11 +10,11 @@ const Product = props => {
   useEffect(() => {
     getAllProducts()
       .then(res => {
-        const selectedProduct = res.data.filter(item => item.id === +postId);
+        const selectedProduct = res.data.filter(item => item._id === +postId);
         setProduct(selectedProduct);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [postId]);
 
   const productPage = product.map(item => {
     return (
