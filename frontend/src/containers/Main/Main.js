@@ -28,7 +28,7 @@ const Main = props => {
         <p>
           <strong>Price:</strong> $ {item.price}
         </p>
-        <Link to={`/cart/${item._id}/1`}>
+        <Link to={`/cart/${item._id}`}>
           <Button text="Add To Cart" type="blue" />
         </Link>
       </Card>

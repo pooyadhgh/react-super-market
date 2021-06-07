@@ -19,7 +19,11 @@ const Button = props => {
         'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4';
   }
 
-  return <button className={btnClass}>{props.text}</button>;
+  return (
+    <button onClick={props.onClick} className={btnClass}>
+      {props.text}
+    </button>
+  );
 };
 
 export default Button;
