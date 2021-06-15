@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTocart, removeFromCart } from '../../actions/cartAction';
+import { Link } from 'react-router-dom';
+
 import Button from '../../components/UI/Button/Button';
 
 const Cart = props => {
@@ -75,7 +77,9 @@ const Cart = props => {
       <div className="lg:w-1/4 text-center my-auto mx-auto">
         <h2 className="text-3xl	font-semibold">Total</h2>
         <p className="text-2xl my-2">$ {sum}</p>
-        <Button text="Checkout" type="blue" />
+        <Link to="/signin">
+          <Button text="Checkout" type="blue" />
+        </Link>
       </div>
     </div>
   );

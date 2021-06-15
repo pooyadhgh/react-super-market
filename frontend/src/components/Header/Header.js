@@ -18,10 +18,7 @@ const Header = props => {
             <Link to="/">Home</Link>
           </li>
           <li className="hover:underline">
-            <Link to="/login">Login</Link>
-          </li>
-          <li className="hover:underline">
-            <Link to="/cart">Cart</Link>
+            <Link to="/signin">Sign in</Link>
           </li>
         </ul>
 
