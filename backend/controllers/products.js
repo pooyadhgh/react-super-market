@@ -12,5 +12,4 @@ const getProduct = (req, res, next) => {
   res.json(product);
 };
 
-exports.getAllProducts = getAllProducts;
-exports.getProduct = getProduct;
+module.exports = { getAllProducts: getAllProducts, getProduct: getProduct };
